@@ -1,7 +1,7 @@
 package com.solvd.buildingcompany.persistence.impl;
 
 import com.solvd.buildingcompany.domain.Address;
-import com.solvd.buildingcompany.domain.BuildingCompany;
+import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 import com.solvd.buildingcompany.persistence.AddressRepository;
 import com.solvd.buildingcompany.persistence.ConnectionPool;
 
@@ -11,16 +11,16 @@ import java.util.List;
 
 public class AddressRepositoryImpl implements AddressRepository {
 
-    ConnectionPool connectionPool = ConnectionPool.getInstance(5);
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance(5);
 
     public AddressRepositoryImpl() throws IOException {
     }
 
     @Override
-    public void create(Address address) {
+    public void create(Address address) throws RetrieveDataException {
         Connection connection = connectionPool.getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Addresses(city, street," +
-                "house_number, apartment_number) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Addresses(city, street, " +
+                " house_number, apartment_number) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, address.getCity());
             preparedStatement.setString(2, address.getStreet());
             preparedStatement.setString(3, address.getHouseNumber());
@@ -31,20 +31,20 @@ public class AddressRepositoryImpl implements AddressRepository {
             while (resultSet.next()) {
                 address.setId(resultSet.getLong(1));
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            throw new RetrieveDataException("Problem with the data");
         } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
-    public void delete(String city) {
+    public void delete(String city) throws RetrieveDataException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Addresses WHERE city = ?")) {
             preparedStatement.setString(1, city);
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            throw new RetrieveDataException("Problem with the data");
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -55,13 +55,13 @@ public class AddressRepositoryImpl implements AddressRepository {
                 .filter(address -> address.getId().equals(addressId))
                 .findFirst()
                 .orElseGet(() -> {
-                    Address address= new Address();
+                    Address address = new Address();
                     addresses.add(address);
                     return address;
                 });
     }
 
-    public void update(Address address) {
+    public void update(Address address) throws RetrieveDataException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Addresses SET city = ?, " +
                 " street = ?, house_number = ?, apartment_number = ?;")) {
@@ -70,8 +70,8 @@ public class AddressRepositoryImpl implements AddressRepository {
             preparedStatement.setString(3, address.getHouseNumber());
             preparedStatement.setInt(4, address.getApartmentNumber());
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            throw new RetrieveDataException("Problem with the data");
         } finally {
             connectionPool.releaseConnection(connection);
         }

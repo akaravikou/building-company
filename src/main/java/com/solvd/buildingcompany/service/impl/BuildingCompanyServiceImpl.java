@@ -2,13 +2,13 @@ package com.solvd.buildingcompany.service.impl;
 
 import com.solvd.buildingcompany.domain.Address;
 import com.solvd.buildingcompany.domain.BuildingCompany;
+import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 import com.solvd.buildingcompany.persistence.BuildingCompanyRepository;
 import com.solvd.buildingcompany.persistence.impl.BuildingCompanyRepositoryImpl;
 import com.solvd.buildingcompany.service.AddressService;
 import com.solvd.buildingcompany.service.BuildingCompanyService;
 
 import java.io.IOException;
-import java.util.List;
 
 public class BuildingCompanyServiceImpl implements BuildingCompanyService {
 
@@ -21,7 +21,7 @@ public class BuildingCompanyServiceImpl implements BuildingCompanyService {
     }
 
     @Override
-    public BuildingCompany create(BuildingCompany buildingCompany) throws IOException {
+    public BuildingCompany create(BuildingCompany buildingCompany) throws IOException, RetrieveDataException {
         buildingCompany.setId(null);
         buildingCompanyRepository.create(buildingCompany);
 
@@ -33,16 +33,8 @@ public class BuildingCompanyServiceImpl implements BuildingCompanyService {
     }
 
     @Override
-    public Long getIdByName(String name) {
+    public Long getIdByName(String name) throws RetrieveDataException {
         return buildingCompanyRepository.findIdByName(name)
-                .orElseThrow(() -> new RuntimeException(String.format("Company cannot be found by name %s", name)));
-    }
-
-    public BuildingCompany createIfNotExists(Long companyId, List<BuildingCompany> companies) {
-        return buildingCompanyRepository.createIfNotExists(companyId, companies);
-    }
-
-    public List<BuildingCompany> createUniqueCompanies (List<BuildingCompany> companies) {
-        return buildingCompanyRepository.createUniqueCompanies(companies);
+                .orElseThrow(() -> new RetrieveDataException("No company with this name"));
     }
 }

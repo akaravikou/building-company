@@ -18,7 +18,7 @@ public class ConnectionPool {
     private ConnectionPool(Integer quantityConnection) throws IOException {
         try {
             Class.forName(Configuration.DRIVER);
-        }catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             throw new ConnectException("Driver not found");
         }
         this.availableConnections = new ArrayList<>();
@@ -28,16 +28,20 @@ public class ConnectionPool {
                     try {
                         this.availableConnections.add(createConnection());
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        try {
+                            throw new ConnectException("Problems with connection");
+                        } catch (ConnectException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 });
     }
 
     private Connection createConnection() throws IOException {
         Connection connection;
-        try{
+        try {
             connection = DriverManager.getConnection(Configuration.URL, Configuration.USER, Configuration.PASSWORD);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw new ConnectException("Cannot create new connection");
         }
         return connection;

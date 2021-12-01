@@ -1,6 +1,7 @@
 package com.solvd.buildingcompany;
 
 import com.solvd.buildingcompany.domain.*;
+import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 import com.solvd.buildingcompany.service.AddressService;
 import com.solvd.buildingcompany.service.BuildingCompanyService;
 import com.solvd.buildingcompany.service.ClientService;
@@ -9,7 +10,6 @@ import com.solvd.buildingcompany.service.impl.BuildingCompanyServiceImpl;
 import com.solvd.buildingcompany.service.impl.ClientServiceImpl;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, RetrieveDataException {
 
         Address address1 = new Address();
         address1.setCity("Minsk");
@@ -102,19 +102,15 @@ public class Main {
         buildingCompany1 = buildingCompanyService.create(buildingCompany1);
         System.out.println(buildingCompany1);
 
-        Long companyId = buildingCompanyService.getIdByName("Roga i kopyta");
+        Long companyId = buildingCompanyService.getIdByName("Building development");
 
         ClientService clientService = new ClientServiceImpl();
         client1 = clientService.create(client1, companyId);
-        System.out.println(client1);
 
-        System.out.println(clientService.select());
+        List<BuildingCompany> companies = clientService.get();
 
         String city = address1.getCity();
         addressService.delete(city);
-
-        clientService.select();
-        buildingCompanyService.createUniqueCompanies(clientService.select());
 
         addressService.update(address1);
     }

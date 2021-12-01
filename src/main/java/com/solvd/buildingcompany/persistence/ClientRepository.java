@@ -2,18 +2,17 @@ package com.solvd.buildingcompany.persistence;
 
 import com.solvd.buildingcompany.domain.BuildingCompany;
 import com.solvd.buildingcompany.domain.Client;
+import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ClientRepository {
 
-    void create(Client client, Long companyId);
+    void create(Client client, Long companyId) throws RetrieveDataException;
 
-    Optional<Long> findIdByLastName(String lastName);
+    Optional<Long> findIdByLastName(String lastName) throws RetrieveDataException;
 
-    List<BuildingCompany> select();
-
-    Client createIfNotExists(Long clientId, List<Client> clients);
+    List<BuildingCompany> get() throws RetrieveDataException;
 
 }

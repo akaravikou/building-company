@@ -3,6 +3,7 @@ package com.solvd.buildingcompany.service.impl;
 import com.solvd.buildingcompany.domain.Address;
 import com.solvd.buildingcompany.domain.BuildingCompany;
 import com.solvd.buildingcompany.domain.Client;
+import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 import com.solvd.buildingcompany.persistence.ClientRepository;
 import com.solvd.buildingcompany.persistence.impl.ClientRepositoryImpl;
 import com.solvd.buildingcompany.service.AddressService;
@@ -26,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client create(Client client,Long companyId) {
+    public Client create(Client client,Long companyId) throws RetrieveDataException {
         client.setId(null);
         clientRepository.create(client,companyId);
 
@@ -38,11 +39,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<BuildingCompany> select() {
-        return clientRepository.select();
-    }
-
-    public Client createIfNotExists(Long clientId, List<Client> clients) {
-        return clientRepository.createIfNotExists(clientId, clients);
+    public List<BuildingCompany> get() throws RetrieveDataException {
+        return clientRepository.get();
     }
 }

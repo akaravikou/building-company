@@ -1,17 +1,14 @@
 package com.solvd.buildingcompany.persistence;
 
 import com.solvd.buildingcompany.domain.Address;
-
-import java.util.List;
+import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 
 public interface AddressRepository {
 
-    void create(Address address);
+    void create(Address address) throws RetrieveDataException;
 
-    void delete(String city);
+    void delete(String city) throws RetrieveDataException;
 
-    Address createIfNotExists(Long addressId, List<Address> addresses);
-
-    void update(Address address);
+    void update(Address address) throws RetrieveDataException;
 
 }
