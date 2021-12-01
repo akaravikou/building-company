@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany;
+package com.solvd.buildingcompany.domain;
 
 import java.util.List;
 
@@ -16,6 +16,8 @@ public class BuildingCompany {
     public BuildingCompany(String name) {
         this.name = name;
     }
+
+    public BuildingCompany() {}
 
     public Long getId() {
         return id;

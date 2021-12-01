@@ -1,4 +1,6 @@
-package com.solvd.buildingcompany;
+package com.solvd.buildingcompany.domain;
+
+import com.solvd.buildingcompany.service.ClientService;
 
 import java.util.List;
 
@@ -10,10 +12,13 @@ public class Client {
     private Address address;
     private List<Order> orders;
 
+
     public Client(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public Client(){}
 
     public Long getId() {
         return id;

@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany;
+package com.solvd.buildingcompany.domain;
 
 public class Address {
 
