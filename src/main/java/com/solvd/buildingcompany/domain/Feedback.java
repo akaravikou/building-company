@@ -1,4 +1,6 @@
-package com.solvd.buildingcompany;
+package com.solvd.buildingcompany.domain;
+
+import com.solvd.buildingcompany.domain.Client;
 
 import java.time.LocalDateTime;
 
