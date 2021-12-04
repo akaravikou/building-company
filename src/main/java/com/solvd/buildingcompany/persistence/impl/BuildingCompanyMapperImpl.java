@@ -12,7 +12,7 @@ import java.util.Optional;
 public class BuildingCompanyMapperImpl implements BuildingCompanyRepository {
 
     @Override
-    public void create(BuildingCompany buildingCompany) throws IOException, RetrieveDataException {
+    public void create(BuildingCompany buildingCompany) throws RetrieveDataException, IOException {
         try (SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession(true)) {
             BuildingCompanyRepository buildingCompanyRepository = sqlSession.getMapper(BuildingCompanyRepository.class);
             buildingCompanyRepository.create(buildingCompany);
