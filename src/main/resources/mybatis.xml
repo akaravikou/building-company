@@ -2,6 +2,7 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
     <properties resource="config.properties"/>
     <environments default="development">
@@ -10,12 +11,14 @@
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
-                <property name="user" value="${username}"/>
+                <property name="username" value="${username}"/>
                 <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+        <mapper resource = "mapper/AddressMapper.xml"/>
+        <mapper resource = "mapper/BuildingCompanyMapper.xml"/>
+        <mapper resource = "mapper/ClientMapper.xml"/>
     </mappers>
 </configuration>

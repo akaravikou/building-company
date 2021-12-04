@@ -3,4 +3,17 @@
 
 <mapper namespace = "com.solvd.buildingcompany.persistence.AddressRepository">
 
+    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO Addresses(city, street, house_number, apartment_number) VALUES (#{city}, #{street}, #{houseNumber},
+        #{apartmentNumber})
+    </insert>
+    
+    <resultMap id="AddressResultMap" type="com.solvd.buildingcompany.domain.Address" autoMapping="false">
+        <id property = "id" column="address_id"/>
+        <result property = "city" column = "city"/>
+        <result property = "street" column = "street"/>
+        <result property = "houseNumber" column = "house_number"/>
+        <result property = "apartmentNumber" column = "apartment_number"/>
+    </resultMap>
+
 </mapper>

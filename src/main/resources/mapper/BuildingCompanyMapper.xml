@@ -3,4 +3,14 @@
 
 <mapper namespace = "com.solvd.buildingcompany.persistence.BuildingCompanyRepository">
 
+    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO Building_companies(address_id, name) VALUES (#{address}, #{name})
+    </insert>
+    
+    <resultMap id="CompanyResultMap" type="com.solvd.buildingcompany.domain.BuildingCompany" autoMapping="false">
+        <id property="id" column="company_id"/>
+        <result property = "name" column="name"/>
+        <collection property="clients" resultMap="com.solvd.buildingcompany.persistence.ClientRepository.ClientResultMap"/>
+    </resultMap>
+
 </mapper>
