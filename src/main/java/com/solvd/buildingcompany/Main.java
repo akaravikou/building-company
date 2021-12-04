@@ -96,22 +96,20 @@ public class Main {
 
         AddressService addressService = new AddressServiceImpl();
         address1 = addressService.create(address1);
-        System.out.println(address1);
 
         BuildingCompanyService buildingCompanyService = new BuildingCompanyServiceImpl();
         buildingCompany1 = buildingCompanyService.create(buildingCompany1);
-        System.out.println(buildingCompany1);
-//
-//        Long companyId = buildingCompanyService.getIdByName("Building development");
-//
-//        ClientService clientService = new ClientServiceImpl();
-//        client1 = clientService.create(client1, companyId);
-//
-//        List<BuildingCompany> companies = clientService.get();
-//
-//        String city = address1.getCity();
-//        addressService.delete(city);
-//
-//        addressService.update(address1);
+
+        Long companyId = buildingCompanyService.getIdByName("Mopid");
+
+        ClientService clientService = new ClientServiceImpl();
+        client1 = clientService.create(client1, companyId);
+
+        List<BuildingCompany> companies = clientService.get();
+
+        String city = address1.getCity();
+        addressService.delete(city);
+
+        addressService.update(address1);
     }
 }

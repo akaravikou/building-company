@@ -8,7 +8,6 @@ import com.solvd.buildingcompany.persistence.MybatisConfig;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ClientMapperImpl implements ClientRepository {
 
@@ -18,11 +17,6 @@ public class ClientMapperImpl implements ClientRepository {
             ClientRepository clientRepository = sqlSession.getMapper(ClientRepository.class);
             clientRepository.create(client, companyId);
         }
-    }
-
-    @Override
-    public Optional<Long> findIdByLastName(String lastName) throws RetrieveDataException {
-        return Optional.empty();
     }
 
     @Override

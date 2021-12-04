@@ -21,6 +21,9 @@ public class BuildingCompanyMapperImpl implements BuildingCompanyRepository {
 
     @Override
     public Optional<Long> findIdByName(String name) throws RetrieveDataException {
-        return Optional.empty();
+        try (SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession(true)) {
+            BuildingCompanyRepository buildingCompanyRepository = sqlSession.getMapper(BuildingCompanyRepository.class);
+            return buildingCompanyRepository.findIdByName(name);
+        }
     }
 }

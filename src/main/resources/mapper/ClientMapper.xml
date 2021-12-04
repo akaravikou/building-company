@@ -4,7 +4,7 @@
 <mapper namespace = "com.solvd.buildingcompany.persistence.ClientRepository">
 
     <insert id="create" keyProperty="client.id" useGeneratedKeys="true">
-    INSERT INTO Clients(address_id, company_id, first_name, last_name) VALUES (#{addressId}, #{companyId},
+    INSERT INTO Clients(address_id, company_id, first_name, last_name) VALUES (#{client.address.id}, #{companyId},
      #{client.firstName}, #{client.lastName})
     </insert>
 

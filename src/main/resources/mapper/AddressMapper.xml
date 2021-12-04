@@ -16,4 +16,13 @@
         <result property = "apartmentNumber" column = "apartment_number"/>
     </resultMap>
 
+    <update id = "update" useGeneratedKeys="false">
+        UPDATE Addresses SET city = #{address.city}, street = #{address.street},  house_number = #{address.houseNumber},
+        apartment_number = #{address.apartmentNumber}
+    </update>
+
+    <delete id = "delete">
+        DELETE FROM Addresses WHERE city = #{address.city}
+    </delete>
+
 </mapper>
