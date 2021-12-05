@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.solvd.buildingcompany.persistence.BuildingCompanyRepository">
+
+    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO Building_companies(address_id, name) VALUES (#{address.id}, #{name})
+    </insert>
+    
+    <resultMap id="CompanyResultMap" type="com.solvd.buildingcompany.domain.BuildingCompany" autoMapping="false">
+        <id property="id" column="company_id"/>
+        <result property = "name" column="name"/>
+        <collection property="clients" resultMap="com.solvd.buildingcompany.persistence.ClientRepository.ClientResultMap"/>
+    </resultMap>
+
+    <select id = "findIdByName" resultType="java.lang.Long">
+            SELECT id FROM Building_companies WHERE name = #{name}
+    </select>
+
+</mapper>

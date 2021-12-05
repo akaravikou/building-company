@@ -40,8 +40,8 @@ public class ConnectionPool {
     private Connection createConnection() throws IOException {
         Connection connection;
         try {
-            connection = DriverManager.getConnection(Configuration.URL, Configuration.USER, Configuration.PASSWORD);
-        } catch (SQLException e) {
+    connection = DriverManager.getConnection(Configuration.URL, Configuration.USERNAME, Configuration.PASSWORD);
+            } catch (SQLException e) {
             throw new ConnectException("Cannot create new connection");
         }
         return connection;

@@ -5,6 +5,7 @@ import com.solvd.buildingcompany.domain.BuildingCompany;
 import com.solvd.buildingcompany.domain.Client;
 import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 import com.solvd.buildingcompany.persistence.ClientRepository;
+import com.solvd.buildingcompany.persistence.impl.ClientMapperImpl;
 import com.solvd.buildingcompany.persistence.impl.ClientRepositoryImpl;
 import com.solvd.buildingcompany.service.AddressService;
 
@@ -21,6 +22,8 @@ public class ClientServiceImpl implements ClientService {
     private final BuildingCompanyService buildingCompanyService;
 
     public ClientServiceImpl() throws IOException {
+//        this.clientRepository = new ClientRepositoryImpl();
+        this.clientRepository = new ClientMapperImpl();
         this.clientRepository = new ClientRepositoryImpl();
         this.addressService = new AddressServiceImpl();
         this.buildingCompanyService = new BuildingCompanyServiceImpl();

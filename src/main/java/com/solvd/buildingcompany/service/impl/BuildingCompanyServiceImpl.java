@@ -4,6 +4,7 @@ import com.solvd.buildingcompany.domain.Address;
 import com.solvd.buildingcompany.domain.BuildingCompany;
 import com.solvd.buildingcompany.domain.exception.RetrieveDataException;
 import com.solvd.buildingcompany.persistence.BuildingCompanyRepository;
+import com.solvd.buildingcompany.persistence.impl.BuildingCompanyMapperImpl;
 import com.solvd.buildingcompany.persistence.impl.BuildingCompanyRepositoryImpl;
 import com.solvd.buildingcompany.service.AddressService;
 import com.solvd.buildingcompany.service.BuildingCompanyService;
@@ -16,7 +17,10 @@ public class BuildingCompanyServiceImpl implements BuildingCompanyService {
     private AddressService addressService;
 
     public BuildingCompanyServiceImpl() throws IOException {
+//        this.buildingCompanyRepository = new BuildingCompanyRepositoryImpl();
+        this.buildingCompanyRepository = new BuildingCompanyMapperImpl();
         this.buildingCompanyRepository = new BuildingCompanyRepositoryImpl();
+
         this.addressService = new AddressServiceImpl();
     }
 

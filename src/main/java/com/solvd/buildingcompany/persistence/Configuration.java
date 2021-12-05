@@ -10,12 +10,12 @@ public class Configuration {
     public static final String DRIVER;
     public static final String URL;
     public static final String PASSWORD;
-    public static final String USER;
+    public static final String USERNAME;
 
     static {
-        USER = getValue("user");
+        USERNAME = getValue("username");
         DRIVER = getValue("driver");
-        URL = getValue("URL");
+        URL = getValue("url");
         PASSWORD = getValue("password");
     }
 

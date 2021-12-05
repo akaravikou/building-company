@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.solvd.buildingcompany.persistence.ClientRepository">
+
+    <insert id="create" keyProperty="client.id" useGeneratedKeys="true">
+    INSERT INTO Clients(address_id, company_id, first_name, last_name) VALUES (#{client.address.id}, #{companyId},
+     #{client.firstName}, #{client.lastName})
+    </insert>
+
+    <select id = "get" resultMap="ClientResultMap">
+        SELECT a.id as address_id, a.city, a.street, a.house_number, a.apartment_number, c.id as client_id,
+        c.first_name, c.last_name, b.id as company_id, b.name
+        FROM Clients c LEFT JOIN Addresses a ON a.id = c.address_id
+        LEFT JOIN Building_companies b ON c.company_id = b.id;
+    </select>
+
+    <resultMap id="ClientResultMap" type="com.solvd.buildingcompany.domain.Client" autoMapping="false">
+        <id property="id" column="client_id"/>
+        <result property = "firstName" column = "first_name"/>
+        <result property = "lastName" column = "last_name"/>
+        <association property="address" resultMap="com.solvd.buildingcompany.persistence.AddressRepository.AddressResultMap"/>
+    </resultMap>
+
+</mapper>

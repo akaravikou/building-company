@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.solvd.buildingcompany.persistence.AddressRepository">
+
+    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO Addresses(city, street, house_number, apartment_number) VALUES (#{city}, #{street}, #{houseNumber},
+        #{apartmentNumber})
+    </insert>
+    
+    <resultMap id="AddressResultMap" type="com.solvd.buildingcompany.domain.Address" autoMapping="false">
+        <id property = "id" column="address_id"/>
+        <result property = "city" column = "city"/>
+        <result property = "street" column = "street"/>
+        <result property = "houseNumber" column = "house_number"/>
+        <result property = "apartmentNumber" column = "apartment_number"/>
+    </resultMap>
+
+    <update id = "update" useGeneratedKeys="false">
+        UPDATE Addresses SET city = #{address.city}, street = #{address.street},  house_number = #{address.houseNumber},
+        apartment_number = #{address.apartmentNumber}
+    </update>
+
+    <delete id = "delete">
+        DELETE FROM Addresses WHERE city = #{address.city}
+    </delete>
+
+</mapper>

@@ -48,22 +48,6 @@ public class ClientRepositoryImpl implements ClientRepository {
         }
     }
 
-    @Override
-    public Optional<Long> findIdByLastName(String lastName) throws RetrieveDataException {
-        Connection connection = connectionPool.getConnection();
-        try (PreparedStatement preparedStatementSelect = connection.prepareStatement("SELECT id FROM Clients WHERE last_name = ?")) {
-            preparedStatementSelect.setString(1, lastName);
-            ResultSet resultSet = preparedStatementSelect.executeQuery();
-            return resultSet.next()
-                    ? Optional.of(resultSet.getLong("id"))
-                    : Optional.empty();
-        } catch (SQLException exception) {
-            throw new RetrieveDataException("Problem with the data");
-        } finally {
-            connectionPool.releaseConnection(connection);
-        }
-    }
-
     public List<BuildingCompany> get() throws RetrieveDataException {
         Connection connection = connectionPool.getConnection();
         List<BuildingCompany> companies = new ArrayList<>();

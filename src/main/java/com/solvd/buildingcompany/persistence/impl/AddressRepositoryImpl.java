@@ -50,17 +50,6 @@ public class AddressRepositoryImpl implements AddressRepository {
         }
     }
 
-    public Address createIfNotExists(Long addressId, List<Address> addresses) {
-        return addresses.stream()
-                .filter(address -> address.getId().equals(addressId))
-                .findFirst()
-                .orElseGet(() -> {
-                    Address address = new Address();
-                    addresses.add(address);
-                    return address;
-                });
-    }
-
     public void update(Address address) throws RetrieveDataException {
         Connection connection = connectionPool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Addresses SET city = ?, " +
