@@ -19,6 +19,8 @@ public class BuildingCompanyServiceImpl implements BuildingCompanyService {
     public BuildingCompanyServiceImpl() throws IOException {
 //        this.buildingCompanyRepository = new BuildingCompanyRepositoryImpl();
         this.buildingCompanyRepository = new BuildingCompanyMapperImpl();
+        this.buildingCompanyRepository = new BuildingCompanyRepositoryImpl();
+
         this.addressService = new AddressServiceImpl();
     }
 

@@ -24,6 +24,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientServiceImpl() throws IOException {
 //        this.clientRepository = new ClientRepositoryImpl();
         this.clientRepository = new ClientMapperImpl();
+        this.clientRepository = new ClientRepositoryImpl();
         this.addressService = new AddressServiceImpl();
         this.buildingCompanyService = new BuildingCompanyServiceImpl();
     }

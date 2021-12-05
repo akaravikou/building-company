@@ -14,8 +14,11 @@ public class AddressServiceImpl implements AddressService {
     private AddressRepository addressRepository;
 
     public AddressServiceImpl() throws IOException {
+
 //        this.addressRepository = new AddressRepositoryImpl();
           this.addressRepository = new AddressMapperImpl();
+          this.addressRepository = new AddressRepositoryImpl();
+
     }
 
     @Override

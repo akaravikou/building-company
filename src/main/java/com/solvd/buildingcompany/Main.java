@@ -100,12 +100,13 @@ public class Main {
         BuildingCompanyService buildingCompanyService = new BuildingCompanyServiceImpl();
         buildingCompany1 = buildingCompanyService.create(buildingCompany1);
 
-        Long companyId = buildingCompanyService.getIdByName("Mopid");
+        Long companyId = buildingCompanyService.getIdByName("Sweet home");
 
         ClientService clientService = new ClientServiceImpl();
         client1 = clientService.create(client1, companyId);
 
         List<BuildingCompany> companies = clientService.get();
+
 
         String city = address1.getCity();
         addressService.delete(city);
