@@ -14,8 +14,6 @@ public interface ClientRepository {
 
     void create(@Param("client")Client client, @Param("companyId")Long companyId) throws RetrieveDataException;
 
-    Optional<Long> findIdByLastName(String lastName) throws RetrieveDataException;
-
     List<BuildingCompany> get() throws RetrieveDataException;
 
 }
