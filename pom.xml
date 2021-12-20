@@ -15,6 +15,7 @@
         <commonsVersion>3.12.0</commonsVersion>
         <mysqlVersion>8.0.27</mysqlVersion>
         <mybatisVersion>3.5.7</mybatisVersion>
+        <testngVersion>7.4.0</testngVersion>
     </properties>
 
     <dependencies>
@@ -47,6 +48,12 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatisVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testngVersion}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
