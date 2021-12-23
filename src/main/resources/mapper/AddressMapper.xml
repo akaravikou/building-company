@@ -25,4 +25,12 @@
         DELETE FROM Addresses WHERE city = #{address.city}
     </delete>
 
+    <select id = "get" resultMap="GetAddressResultMap">
+        SELECT * FROM Addresses WHERE city = #{address.city}
+    </select>
+
+    <select id = "getAll" resultMap="GetAllAddressesResultMap">
+        SELECT * FROM Addresses
+    </select>
+
 </mapper>

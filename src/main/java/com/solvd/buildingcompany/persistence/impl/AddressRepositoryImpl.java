@@ -65,4 +65,14 @@ public class AddressRepositoryImpl implements AddressRepository {
             connectionPool.releaseConnection(connection);
         }
     }
+
+    @Override
+    public Address get(String city) throws RetrieveDataException {
+        return null;
+    }
+
+    @Override
+    public List<Address> getAll() throws RetrieveDataException {
+        return null;
+    }
 }

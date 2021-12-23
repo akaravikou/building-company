@@ -6,6 +6,8 @@ import com.solvd.buildingcompany.persistence.AddressRepository;
 import com.solvd.buildingcompany.persistence.MybatisConfig;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 public class AddressMapperImpl implements AddressRepository {
 
     @Override
@@ -29,6 +31,22 @@ public class AddressMapperImpl implements AddressRepository {
         try (SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession(true)) {
             AddressRepository addressRepository = sqlSession.getMapper(AddressRepository.class);
             addressRepository.update(address);
+        }
+    }
+
+    @Override
+    public Address get(String city) throws RetrieveDataException {
+        try (SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession(true)) {
+            AddressRepository addressRepository = sqlSession.getMapper(AddressRepository.class);
+            return addressRepository.get(city);
+        }
+    }
+
+    @Override
+    public List<Address> getAll() throws RetrieveDataException {
+        try (SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession(true)) {
+            AddressRepository addressRepository = sqlSession.getMapper(AddressRepository.class);
+            return addressRepository.getAll();
         }
     }
 }
