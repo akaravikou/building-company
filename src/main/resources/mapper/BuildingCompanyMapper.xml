@@ -3,7 +3,7 @@
 
 <mapper namespace = "com.solvd.buildingcompany.persistence.BuildingCompanyRepository">
 
-    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    <insert id="create" keyColumn="id" useGeneratedKeys="true">
         INSERT INTO Building_companies(address_id, name) VALUES (#{address.id}, #{name})
     </insert>
     

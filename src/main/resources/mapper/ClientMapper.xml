@@ -22,4 +22,13 @@
         <association property="address" resultMap="com.solvd.buildingcompany.persistence.AddressRepository.AddressResultMap"/>
     </resultMap>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM Clients
+    </select>
+
+    <select id = "getAll" resultMap="ClientResultMap">
+        SELECT id AS client_id, address_id, company_id, first_name, last_name FROM Clients
+    </select>
+
+
 </mapper>

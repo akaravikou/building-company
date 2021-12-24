@@ -8,6 +8,16 @@ public class Address {
     private String houseNumber;
     private Integer apartmentNumber;
 
+    public Address() {
+    }
+
+    public Address(String city, String street, String houseNumber, Integer apartmentNumber) {
+        this.city = city;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.apartmentNumber = apartmentNumber;
+    }
+
     public Long getId() {
         return id;
     }

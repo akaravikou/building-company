@@ -18,7 +18,6 @@ public class AddressServiceImpl implements AddressService {
 
 //        this.addressRepository = new AddressRepositoryImpl();
           this.addressRepository = new AddressMapperImpl();
-          this.addressRepository = new AddressRepositoryImpl();
 
     }
 
@@ -52,5 +51,10 @@ public class AddressServiceImpl implements AddressService {
             throw new RetrieveDataException("No objects");
         }
         return addresses;
+    }
+
+    @Override
+    public Integer getCount() throws RetrieveDataException {
+        return addressRepository.getCount();
     }
 }

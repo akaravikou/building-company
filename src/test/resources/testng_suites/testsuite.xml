@@ -1,21 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Suite" parallel="classes" thread-count="5">
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-    <test name="Database">
-        <groups>
-            <run>
-                <include name="test"/>
-            </run>
-        </groups>
+<suite name="testsuite" parallel="classes" thread-count="5">
+
+    <test name="address">
         <classes>
             <class name="com.solvd.buildingcompany.TestAddressService">
-            </class>
-            <!--<class name="com.solvd.buildingcompany.TestAddressService">
                 <methods>
-                    <include name="verify..."/>
+                    <include name="verifyAddressCreateTest"/>
+                    <include name="verifyAddressDeleteTest"/>
+                    <include name="verifyAddressUpdateTest"/>
+                    <include name="verifyAddressGetByCityTest"/>
+                    <include name="verifyAddressCountTest"/>
+                    <include name="verifyAddressCreateDPTest"/>
                 </methods>
-            </class>-->
+            </class>
+        </classes>
+    </test>
+
+    <test name="buildingcompany">
+        <classes>
+            <class name="com.solvd.buildingcompany.TestBuildingCompanyService">
+                <methods>
+                    <include name="verifyBuildingCompanyCreateTest"/>
+                    <include name="verifyBuildingCompanyGetIdByNameTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="client">
+        <classes>
+            <class name="com.solvd.buildingcompany.TestClientService">
+                <methods>
+                    <include name="verifyClientCreateTest"/>
+                    <include name="verifyClientCountTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

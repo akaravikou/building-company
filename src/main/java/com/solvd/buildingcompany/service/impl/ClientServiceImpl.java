@@ -44,4 +44,18 @@ public class ClientServiceImpl implements ClientService {
     public List<BuildingCompany> get() throws RetrieveDataException {
         return clientRepository.get();
     }
+
+    @Override
+    public Integer getCount() throws RetrieveDataException {
+        return clientRepository.getCount();
+    }
+
+    @Override
+    public List<Client> getAll() throws RetrieveDataException {
+        List<Client> clients = clientRepository.getAll();
+        if(clients == null) {
+            throw new RetrieveDataException("No objects");
+        }
+        return clients;
+    }
 }

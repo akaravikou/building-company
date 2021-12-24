@@ -16,6 +16,7 @@
         <mysqlVersion>8.0.27</mysqlVersion>
         <mybatisVersion>3.5.7</mybatisVersion>
         <testngVersion>7.4.0</testngVersion>
+        <mavenSurfirePluginVersion>2.12</mavenSurfirePluginVersion>
     </properties>
 
     <dependencies>
@@ -71,10 +72,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
+                <version>3.0.0-M5</version>
                 <configuration>
-                    <parallel>methods</parallel>
-                    <threadCount>5</threadCount>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testng-suites/testsuite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>

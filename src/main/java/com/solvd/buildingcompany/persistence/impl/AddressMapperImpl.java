@@ -49,4 +49,12 @@ public class AddressMapperImpl implements AddressRepository {
             return addressRepository.getAll();
         }
     }
+
+    @Override
+    public Integer getCount() throws RetrieveDataException {
+        try (SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession(true)) {
+            AddressRepository addressRepository = sqlSession.getMapper(AddressRepository.class);
+            return addressRepository.getCount();
+        }
+    }
 }

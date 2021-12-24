@@ -75,4 +75,8 @@ public class AddressRepositoryImpl implements AddressRepository {
     public List<Address> getAll() throws RetrieveDataException {
         return null;
     }
+
+    public Integer getCount() throws RetrieveDataException {
+        return null;
+    }
 }

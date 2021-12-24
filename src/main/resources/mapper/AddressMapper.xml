@@ -17,20 +17,24 @@
     </resultMap>
 
     <update id = "update" useGeneratedKeys="false">
-        UPDATE Addresses SET city = #{address.city}, street = #{address.street},  house_number = #{address.houseNumber},
-        apartment_number = #{address.apartmentNumber}
+        UPDATE Addresses SET city = #{city}, street = #{street},  house_number = #{houseNumber},
+        apartment_number = #{apartmentNumber}
     </update>
 
     <delete id = "delete">
-        DELETE FROM Addresses WHERE city = #{address.city}
+        DELETE FROM Addresses WHERE city = #{city}
     </delete>
 
-    <select id = "get" resultMap="GetAddressResultMap">
-        SELECT * FROM Addresses WHERE city = #{address.city}
+    <select id = "get" resultMap="AddressResultMap">
+        SELECT id AS address_id, city, street, house_number, apartment_number FROM Addresses WHERE city = #{city} limit 1
     </select>
 
-    <select id = "getAll" resultMap="GetAllAddressesResultMap">
-        SELECT * FROM Addresses
+    <select id = "getAll" resultMap="AddressResultMap">
+        SELECT id AS address_id, city, street, house_number, apartment_number FROM Addresses
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM Addresses
     </select>
 
 </mapper>

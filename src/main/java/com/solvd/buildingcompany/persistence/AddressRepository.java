@@ -17,4 +17,6 @@ public interface AddressRepository {
 
     List<Address> getAll() throws RetrieveDataException;
 
+    Integer getCount() throws RetrieveDataException;
+
 }

@@ -96,5 +96,14 @@ public class ClientRepositoryImpl implements ClientRepository {
                     return client;
                 });
     }
+
+    public Integer getCount() throws RetrieveDataException {
+        return null;
+    }
+
+    @Override
+    public List<Client> getAll() throws RetrieveDataException {
+        return null;
+    }
 }
 
